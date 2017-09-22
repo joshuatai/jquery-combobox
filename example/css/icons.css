@@ -39,3 +39,6 @@ span.svg {
   width: 16px;
   height: 16px;
 }
+.icon-cancel {
+  background-image: url("../images/icon/close_cancel.svg");
+}

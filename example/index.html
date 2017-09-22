@@ -8,7 +8,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/logo-apple-touch-icon-114.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/logo-apple-touch-icon-72.png">
         <link rel="shortcut icon" href="img/logo_32.png">
-        <title>jQuery Date Picker</title>
+        <title>jQuery Combo Box</title>
         <link type="text/css" rel="stylesheet" href="css/normalize.css" />
         <link type="text/css" rel="stylesheet" href="css/dropdowns.css" />
         <link type="text/css" rel="stylesheet" href="css/forms.css" />
@@ -20,13 +20,13 @@
         <link type="text/css" rel="stylesheet" href="css/header.css" />
         <link type="text/css" rel="stylesheet" href="css/grid-rows.css" />
         <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
-        <link type="text/css" rel="stylesheet" href="../datepicker.css" />
+        <link type="text/css" rel="stylesheet" href="../combobox.css" />
     </head>
     <body style="background-color: #eee">
         <header class="site-header" role="banner">
             <a href="" class="banner">
                 <h1 class="site-title">
-                <span id="site-title">Bootstrap Date Picker</span> <small id="site-subtitle"></small>
+                <span id="site-title">jQuery Combo Box</span> <small id="site-subtitle"></small>
                 </h1>
             </a>
         </header>
@@ -35,13 +35,19 @@
                 <div class="segment col-sm-12 col-md-12 ">
                     <div class="segment-panel row-md-8 row-md-8 row-sm-7 row-xs-7">
                         <div class="segment-panel-heading">
-                            <h3 class="section-title">Date Picker</h3>
+                            <h3 class="section-title">Combo Box</h3>
                         </div>
                         <div class="segment-content">
                             <section>
-                                <p>For detailed UI information, see <a href="http://tw-hie/ui_standards/2010/11/calendar/#date-picker" target="_blank">Date Picker</a>.</p>
-                                <h5>Date Input Field</h5>
-                                <input id="datepicker-input" type="text" class="form-control input-width-xs">
+                                <p>A combo box allows the user to type in a single-line input to limit the search, and select an item from a list of matched options. We recommend using a combo box when you have a list that contains more than 13 items. In case when the list contains less than 13 items, use a drop-down menu.</p>
+                                <select id="combobox" class="input-width-default form-control" data-toggle="combobox">
+                                    <option>France</option>
+                                    <option>Germany</option>
+                                    <option>Syria</option>
+                                    <option>Tahiti</option>
+                                    <option>Taiwan</option>
+                                    <option>Tajikistan</option>
+                                </select>
                             </section>
                         </div>
                     </div>
@@ -49,8 +55,8 @@
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
-        <script src="../vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-        <script src="../datepicker.js"></script>
+        <script src="../vendors/jQuery-editable-select-master/dist/jquery-editable-select.min.js"></script>
+        <script src="../combobox.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
