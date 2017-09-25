@@ -1,6 +1,6 @@
 /* =========================================================
  * jquery-combobox.js
- * Repo: https://adc.github.trendmicro.com/hie-ui/bootstrap-datepicker
+ * Repo: git@adc.github.trendmicro.com:joshua-tai/jquery-combobox.git
  * Demo: https://eternicode.github.io/bootstrap-datepicker/
  * Docs: https://bootstrap-datepicker.readthedocs.org/
  * =========================================================

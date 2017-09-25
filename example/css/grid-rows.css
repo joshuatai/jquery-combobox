@@ -997,6 +997,9 @@
 }
 /* grid rows */
 @media (max-width: 767px) {
+  .row-xs-6 {
+    height: 400px;
+  }
   .row-xs-7 {
     height: 470px;
   }

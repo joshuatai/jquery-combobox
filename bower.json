@@ -1,7 +1,7 @@
 {
-  "name": "bootstrap-datepicker",
+  "name": "jquery-combobox",
   "version": "1.0.0",
-  "description": "A Bootstrap plugin for custom datepicker.",
+  "description": "A jQuery plugin for custom combo box.",
   "theme": "minimalism",
   "authors": [
     "Joshua Tai (HIE-TW)<joshua_tai@trend.com.tw>",
@@ -13,14 +13,16 @@
   "develop-manager": ["Chandler Chou (HIE-TW) <chandler_chou@trend.com.tw>"],
   "homepage": "./example/index.html",
   "snapshots": [
-    "./datepicker-1.png"
+    "./combobox-1.png",
+    "./combobox-2.png",
+    "./combobox-3.png",
+    "./combobox-4.png"
   ],
   "keywords": [
     "jquery",
-    "bootstrap",
-    "date",
-    "picker",
-    "datepicker"
+    "combobox",
+    "selection",
+    "filter"
   ],
   "dependencies": {
     "jquery": "2.2.4"
