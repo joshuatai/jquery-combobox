@@ -29,6 +29,22 @@
 
   'use strict';
 
+  EditableSelect.prototype.show = function () {
+		this.$list.css({
+			top:   this.$input.position().top + this.$input.outerHeight() - 1,
+			left:  this.$input.position().left,
+			width: this.$input.outerWidth()
+		});
+		
+		if (!this.$list.is(':visible') && (this.$list.find('li.es-visible').length > 0 || this.$list.find('li.matched-visible').length > 0)) {
+			var fns = { default: 'show', fade: 'fadeIn', slide: 'slideDown' };
+			var fn  = fns[this.options.effects];
+			
+			this.utility.trigger('show');
+			this.$input.addClass('open');
+			this.$list[fn](this.options.duration, $.proxy(this.utility.trigger, this.utility, 'shown'));
+		}
+	};
 
   //Add customize codes at original filter function.
   EditableSelect.prototype.filter = function () {
@@ -40,7 +56,6 @@
     if (this.options.filter) {
       hiddens = this.$list.find('li').filter(function (i, li) { return $(li).text().toLowerCase().indexOf(search) < 0; }).hide().removeClass('es-visible').length;
       if (this.$list.find('li').length == hiddens) {
-        //this.hide();
         this.onSearchNotFound();//customize to call onSearchNotFound function.
       }
     }
@@ -48,7 +63,7 @@
   //Customize onSearchNotFound function
   EditableSelect.prototype.onSearchNotFound = function () {
     if(!this.$list.find('li').hasClass("no-matches")) {
-      this.$list.append("<li class=\"no-matches\">No matches found.</li>");
+      this.$list.append("<li class=\"no-matches matched-visible\">No matches found.</li>");
     }
   };
 
@@ -70,7 +85,6 @@
     this.$combobox.addClass(this.$element.attr('class').split(' ').filter(function (classname) {
       return classname !== 'form-control';
     }).join(' '));
-
     this._init();
   };
 
@@ -90,30 +104,49 @@
       var $input = this.$input = this.$combobox.find('.es-input').addClass('form-control').attr('placeholder', this.options.placeholder);
       var $list  = this.$list = this.$combobox.find('.es-list').addClass('dropdown-menu');
       var $close = this.$close;
-
       this.$combobox.append($close);
-
-      this.$combobox
-        .on('show.editable-select', function (e) {
-            $list.css("top", "auto");
-            $list.find('li').addClass("es-visible").show();
-        }).on('select.editable-select', function (e) {
+      if (this.options.disabled === true) this.disable();
+      this.$element
+        .on('show.editable-select', (function (e) {
+            if (!$input.val()) {
+              $list.css("top", "auto");
+              $list.find('li').addClass("es-visible").show();
+            }
+            this._show($list.find('li.es-visible'));
+        }).bind(this))
+        .on('select.editable-select', (function (e, $li) {
             $close.show();
-        });
+            this._select($li);
+        }).bind(this));
     },
     /* Events Triggerer */
-    _edit: function (date) {
-      this.$element.trigger($.Event('edit'), [date]);
+    _select: function (value) {
+      this.$element.trigger($.Event('select.combobox'), [$(value).html()]);
+    },
+    _show: function (lists) {
+      if (lists.length === 0) lists = [];
+      this.$element.trigger($.Event('show.combobox'), [lists.map(function (index, list) {
+        return $(list).html();
+      })]);
+    },
+    /* Methods */
+    enable: function () {
+      this.$combobox.removeClass('disabled');
+      this.$input.attr('disabled', false);
     },
     disable: function () {
-      this.$element.attr('disabled', true);
+      this.$combobox.addClass('disabled');
+      this.$input.attr('disabled', true);
     },
     destroy: function () {
-      $(document).off('click', $.proxy(this._doUnEdit, this));
-      this.$element.removeAttr('class data-role').addClass(this.orgClass);
-      this.$element.insertBefore(this.$datepickerWrapper);
-      this.$datepickerWrapper.add(this.$label, this.$datepickerContainer._datepicker('destroy')).remove();
-      delete this.$element.data()['bs.datepicker'];
+      this.$list.off('mousemove mousedown mouseup');
+      this.$input.off('focus blur input keydown');
+      this.$input.replaceWith(this.$element);
+      this.$element.insertAfter(this.$combobox);
+      this.$combobox.remove();
+      this.$list.remove();
+      this.$close.remove();
+      delete this.$element.data()['combobox'];
     }
   };
 

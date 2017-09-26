@@ -38,27 +38,21 @@ $('#combobox').combobox(options);
 ### Properties
 Name                | Type       | Default       | Description
 :---                | :---       | :------------ | :----------
-format              | String     | 'yyyy-mm-dd'  | The date format, combination of `yyyy, mm, and dd`.
-disabled            | Boolean    | true          | Manimulate whether a date picker will be enabled or disabled.
+disabled            | Boolean    | false         | Manimulate whether a combobox component will be enabled or disabled initially.
+placeholder         | String     | Select...     | Placeholder text for the filter input.
+
 
 ### Methods
 Name                | Parameters | Return        | Description
 :---                | :---       | :------------ | :----------
-getDate             | None       | Date Object   | Returns a localized date object representing the internal date object of the first datepicker in the selection. For multidate pickers, returns the latest date selected.
-getUTCDate          | None       | Date Object   | Returns the internal UTC date object, as-is and unconverted to local time, of the first datepicker in the selection. For multidate pickers, returns the latest date selected.
-setDate             | date (Date)| None          | Sets the internal date. `date` is assumed to be a “local” date object, and will be converted to UTC for internal use.
-setUTCDate          | date (Date)| None          | Sets the internal date. `date` is assumed to be a UTC date object, and will not be converted.
-disable             | None       | None          | Disables the datepicker.
-destroy             | None       | None          | Removes the datepicker functionality completely. This will return the element back to its pre-init state.
+enable              | None       | None          | Enables the combobox.
+disable             | None       | None          | Disables the combobox.
+destroy             | None       | None          | Removes the combobox functionality completely. This will return the element back to its pre-init state.
 
 ### Events
-Name                | Parameters                          | Return   | Description
-:---                | :---                                | :--------| :----------
-change(event, date) | Event object, formatted date string | None     | Triggered when the date is changed.
-focus(event)        | Event object                        | None     | Triggered when the input element of datepicker is focused in.
-click(event)        | Event object                        | None     | Triggered when the input element of datepicker is clicked.
-blur(event)         | Event object                        | None     | Triggered when the input element of datepicker is focused out.
-keydown(event)      | Event object                        | None     | Triggered when the keydown behavior is on the input element of datepicker.
-
+Name                                 | Parameters                            | Return   | Description
+:---                                 | :---                                  | :--------| :----------
+select.combobox(event, value)        | Event object, value                   | None     | Triggered when an option is selected.
+show.combobox(event, items)          | Event object, collection of values    | None     | Triggered when the options menu is shown.
 ## License
 [MIT License (MIT)](http://opensource.org/licenses/MIT)
