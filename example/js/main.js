@@ -1,12 +1,22 @@
 ;(function ($) {
 
-  var combobox = $('[data-toggle=combobox]').combobox({
-    
-  }).on('filter.combobox', function (e, values) {
-    console.log(values);
+  var combobox = $('#combobox').combobox({
+    // clearable: false,
+    // value: 'Syria'
   })
-  //combobox.combobox('enable');
-
+  .on('filter.combobox', function (e, values) {
+    //console.log(values);
+  })
+  .on('change.combobox', function (e, value) {
+    console.log(value) 
+  })
+  .on('show.combobox', function (e, lists) {
+    console.log(lists)
+  })
+  // $(document).on('click', function (e) {
+  //   combobox.combobox('setValue', 'tajikistan');
+  // });
+  
 })(jQuery);
 
 

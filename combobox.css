@@ -5,6 +5,13 @@
 .combobox .icon {
   right: 25px;
 }
+.combobox [data-toggle="close"] {
+  display: none;
+}
+.combobox.selected:hover [data-toggle="close"],
+.combobox.selected input:hover [data-toggle="close"] {
+  display: block;
+}
 .combobox .dropdown-menu {
   right: 0;
   left: inherit;
@@ -28,6 +35,9 @@
 }
 .combobox .dropdown-menu > li.selected {
   background: #f4f4f4;
+}
+.combobox .dropdown-menu > li.actived {
+  background: #eeeeee;
 }
 .combobox .dropdown-menu .no-matches,
 .combobox .dropdown-menu li.no-matches {
