@@ -81,28 +81,25 @@
     this.$element                  = $(element);
     this.$combobox                 = $(combobox).insertBefore(this.$element).append(this.$element).data('combobox', this);
     this.$close                    = $('<span data-toggle="close"></span>').addClass('icon icon-cancel').data('combobox', this);
-
+    this.$listItems                = this.$element.children();
     this.$combobox.addClass(this.$element.attr('class').split(' ').filter(function (classname) {
       return classname !== 'form-control';
     }).join(' '));
-
-    // if (options.value) {
-    //   var selectable = this.$element.children().filter(function (index, item) {
-    //     return item.value === options.value;
-    //   });
-    //   if (selectable.length > 0) {
-    //     this.$element.val(options.value).children().removeAttr('selected');
-    //     selectable.attr('selected', true);
-    //   }  
-    // }
-    // var selectedItem = this.$element.find('[selected]');
-    // this._value = selectedItem.length > 0 ? selectedItem.val() : '';
-    // if (options.clearable === true && this._value) {
-    //   this.$combobox.addClass('selected').append(this.$close);
-    // } else if (options.clearable === false && !this._value) {
-    //   this._value = this.$element.children().first().attr('selected', true)[0].value;
-    // }
     
+    var selectedItem = this.$element.find('[selected]');
+    
+    if (options.value) {
+      var selectable = this.$listItems.filter(function (index, item) {
+        return item.value === options.value;
+      });
+      if (selectable.length > 0) {
+        this.$listItems.removeAttr('selected');
+        selectedItem = selectable.attr('selected', true);
+      }
+    }
+    if (options.clearable === false && selectedItem.length === 0) {
+      selectedItem = this.$element.children().first().attr('selected', true);
+    }
     this.$element.editableSelect({
       effects: 'fade'
     });
@@ -116,7 +113,8 @@
     this.$list = this.$combobox.find('.es-list').addClass('dropdown-menu');
     this.es = this.$input.data('editableSelect');
     this.es.combobox = this;
-    if (this.options.disabled === true) this.disable();
+    if (selectedItem.val()) this._setValue(selectedItem.val());
+    if (options.disabled === true) this.disable();
   };
 
   Combobox.VERSION = '1.0.0';
@@ -125,19 +123,16 @@
     disabled: false,
     placeholder: 'Select...',
     value: "",
-    clearable: true,
-    items: []
+    clearable: true
   };
 
-  
-  //OK
   var clear = function (instance) {
     instance.$combobox.removeClass('selected');
     instance.$input.val('');
     instance.$list.children().removeClass('actived selected');
     instance.$close.detach();
+    instance.selected = false;
     if (instance.options.clearable === true) {
-      instance.selected = false;
       instance._value = '';
     }
   }
@@ -158,7 +153,6 @@
       var selectable = this.$element.children().filter(function (index, item) {
         return item.value === value;
       });
-
       if (value === '' || selectable.length > 0) {
         if (value) {
           assign(this, selectable);
@@ -168,7 +162,6 @@
       } else {
         this._setValue(this.value);
       }
-      
     },
     /* Events Triggerer */
     _change: function (value) {
@@ -183,7 +176,12 @@
     },
     /* Methods */
     setValue: function (value) {
-
+      var matchedItem = this.$element.children().filter(function (index, item) {
+        return item.value == value;
+      });
+      if (matchedItem.length > 0) {
+        this.es.select(this.$list.children().eq(matchedItem[0].index).addClass('es-visible'));
+      }
     },
     getValue: function () {
       return this._value;
@@ -198,7 +196,7 @@
     },
     destroy: function () {
       this.$list.off('mousemove mousedown mouseup');
-      this.$input.off('focus blur input keydown');
+      this.$input.off('focus blur input keydown select show');
       this.$input.replaceWith(this.$element);
       this.$element.insertAfter(this.$combobox);
       this.$combobox.remove();
@@ -278,7 +276,7 @@
         } else {
           if (keycode === 8) {
             combobox._setValue('');
-            combobox._change('');
+            if (combobox.clearable === true) combobox._change('');
           }
           combobox.$list
             .children()

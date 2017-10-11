@@ -36,23 +36,25 @@ $('#combobox').combobox(options);
 
 ## API
 ### Properties
-Name                | Type       | Default       | Description
-:---                | :---       | :------------ | :----------
-disabled            | Boolean    | false         | Manimulate whether a combobox component will be enabled or disabled initially.
-placeholder         | String     | Select...     | Placeholder text for the filter input.
+Name           | Type    | Default   | Description
+:---           | :---    | :-------- | :----------
+disabled       | Boolean | false     | Manimulate whether a combobox component will be enabled or disabled initially.
+placeholder    | String  | Select... | Placeholder text for the filter input.
 
 
 ### Methods
-Name                | Parameters | Return        | Description
-:---                | :---       | :------------ | :----------
-enable              | None       | None          | Enables the combobox.
-disable             | None       | None          | Disables the combobox.
-destroy             | None       | None          | Removes the combobox functionality completely. This will return the element back to its pre-init state.
+Name           | Parameters     | Return        | Description
+:---           | :------------- | :------------ | :----------
+setValue       | Value (String) | None          | Set value after initialization
+getValue       | None           | Value (String)| Get value after initialization
+enable         | None           | None          | Enables the combobox after initialization.
+disable        | None           | None          | Disables the combobox after initialization.
+destroy        | None           | None          | Removes the combobox functionality completely. This will return the element back to its pre-init state.
 
 ### Events
-Name                                 | Parameters                            | Return   | Description
-:---                                 | :---                                  | :--------| :----------
-select.combobox(event, value)        | Event object, value                   | None     | Triggered when an option is selected.
-show.combobox(event, items)          | Event object, collection of values    | None     | Triggered when the options menu is shown.
+Name                           | Parameters                                   | Description
+:----------------------------- | :------------------------------------------- | :----------------------------------
+change.combobox(event, value)  | Event (Object), value (String)               | Triggered when an option is changed.
+show.combobox(event, items)    | Event (Object), Collection of values (Array) | Triggered when the options menu is shown.
 ## License
 [MIT License (MIT)](http://opensource.org/licenses/MIT)
