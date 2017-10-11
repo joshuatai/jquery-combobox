@@ -139,7 +139,7 @@
   
   var assign = function (instance, selectable) {
     instance.$combobox.addClass('selected');
-    instance.$input.val(selectable.val());
+    instance.$input.val(selectable.text());
     instance.$list.children().removeClass('actived').eq(selectable[0].index).addClass('actived');
     instance.selected = true;
     instance._value = selectable.val();
