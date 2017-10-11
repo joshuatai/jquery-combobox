@@ -85,7 +85,6 @@
     this.$combobox.addClass(this.$element.attr('class').split(' ').filter(function (classname) {
       return classname !== 'form-control';
     }).join(' '));
-    
     var selectedItem = this.$element.find('[selected]');
     
     if (options.value) {
@@ -255,9 +254,11 @@
       if (e.namespace) {
         var combobox = $(this).data('editableSelect').combobox;
         var value = $li.attr('value') || $li.text();
+        
         combobox._setValue(value);
         combobox._change(value);
         combobox.$input.trigger('blur');
+        
         e.preventDefault();
         e.stopPropagation();
       }
@@ -274,14 +275,17 @@
           combobox.selected = false;
           combobox.$close.detach();
         } else {
+          
           if (keycode === 8) {
             combobox._setValue('');
             if (combobox.clearable === true) combobox._change('');
           }
-          combobox.$list
-            .children()
-            .addClass("es-visible")
-            .show();
+          if (keycode !== 13) {
+            combobox.$list
+              .children()
+              .addClass("es-visible")
+              .show();
+          }
           e.preventDefault();
           return false;
         }
