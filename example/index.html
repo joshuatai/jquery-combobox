@@ -33,14 +33,24 @@
         <div class="segment-panels">
             <div class="row">
                 <div class="segment col-sm-12 col-md-12 ">
-                    <div class="segment-panel row-md-5 row-md-5 row-sm-5 row-xs-6">
+                    <div class="segment-panel row-md-7 row-md-7 row-sm-7 row-xs-7">
                         <div class="segment-panel-heading">
                             <h3 class="section-title">Combo Box</h3>
                         </div>
                         <div class="segment-content">
                             <section>
                                 <p>A combo box allows the user to type in a single-line input to limit the search, and select an item from a list of matched options. We recommend using a combo box when you have a list that contains more than 13 items. In case when the list contains less than 13 items, use a drop-down menu.</p>
+                                <h5>Can be empty</h5>
                                 <select id="combobox" class="input-width-default">
+                                    <option value="france">France</option>
+                                    <option value="germany">Germany</option>
+                                    <option value="syria" selected>Syria</option>
+                                    <option value="tahiti">Tahiti</option>
+                                    <option value="taiwan">Taiwan</option>
+                                    <option value="tajikistan">Tajikistan</option>
+                                </select>
+                                <h5>To select is Required</h5>
+                                <select id="combobox-2" class="input-width-default">
                                     <option value="france">France</option>
                                     <option value="germany">Germany</option>
                                     <option value="syria" selected>Syria</option>
