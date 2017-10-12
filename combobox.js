@@ -276,7 +276,7 @@
           combobox.$close.detach();
         } else {
           
-          if (keycode === 8) {
+          if (keycode === 8 || keycode === 46) {
             combobox._setValue('');
             if (combobox.clearable === true) combobox._change('');
           }
