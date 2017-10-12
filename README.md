@@ -1,6 +1,6 @@
 # jQuery Combo Box
 
-jQuery Combo Box is developed base on a jQuery plugin ([jQuery Editable Select](https://www.npmjs.com/package/jquery-editable-select)), and adopted the Style Portal.
+jQuery Combo Box is developed base on a jQuery plugin ([jQuery Editable Select](https://www.npmjs.com/package/jquery-editable-select)), and adopted the Trend Micro Style Portal.
 
 ## Usage
 ### HTML
