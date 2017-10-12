@@ -31,7 +31,7 @@ $('#combobox').combobox(options);
 
 ## Dependencies
 * [jQuery Editable Select homepage and documentation](http://indrimuska.github.io/jquery-editable-select/)
-* [Style Portal - Date Picker](httphttp://style-portal.tw.trendnet.org/#/styles/minimalism/1.7.0/65ce6af3-87b9-45ed-b1e7-56f1b1ad3745)
+* [Style Portal - Combo Box](http://style-portal.tw.trendnet.org/#/styles/minimalism/1.7.0/65ce6af3-87b9-45ed-b1e7-56f1b1ad3745)
 
 
 ## API
