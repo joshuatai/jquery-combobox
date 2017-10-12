@@ -38,6 +38,8 @@ $('#combobox').combobox(options);
 ### Properties
 Name           | Type    | Default   | Description
 :---           | :---    | :-------- | :----------
+value          | String  | None      | Set default value initially.
+clearable      | Boolean | true      | The value can be empty or not.
 disabled       | Boolean | false     | Manimulate whether a combobox component will be enabled or disabled initially.
 placeholder    | String  | Select... | Placeholder text for the filter input.
 
