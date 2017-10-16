@@ -27,7 +27,8 @@
   text-decoration: none;
   white-space: nowrap;
 }
-.combobox .dropdown-menu > li:hover {
+.combobox .dropdown-menu > li:hover,
+.combobox .dropdown-menu > li.selected:hover {
   color: #222;
   text-decoration: none;
   background-color: #eee;
@@ -37,7 +38,7 @@
   background: #f4f4f4;
 }
 .combobox .dropdown-menu > li.actived {
-  background: #eeeeee;
+  background: #f4f4f4;
 }
 .combobox .dropdown-menu .no-matches,
 .combobox .dropdown-menu li.no-matches {
