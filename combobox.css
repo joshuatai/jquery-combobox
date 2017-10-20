@@ -8,9 +8,15 @@
 .combobox [data-toggle="close"] {
   display: none;
 }
+
+.combobox.selected input:hover + [data-toggle="close"],
+.combobox.selected input + [data-toggle="close"]:hover,
 .combobox.selected:hover [data-toggle="close"],
-.combobox.selected input:hover [data-toggle="close"] {
+.combobox.selected input:focus + [data-toggle="close"] {
   display: block;
+}
+.combobox.selected input:focus {
+  color: #999999;
 }
 .combobox .dropdown-menu {
   right: 0;

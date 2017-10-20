@@ -112,7 +112,10 @@
     this.$list = this.$combobox.find('.es-list').addClass('dropdown-menu');
     this.es = this.$input.data('editableSelect');
     this.es.combobox = this;
-    if (selectedItem.val()) this._setValue(selectedItem.val());
+    if (selectedItem.val()) {
+      this._setValue(selectedItem.val());
+      this.$input.trigger('hidden.editable-select');
+    }
     if (options.disabled === true) this.disable();
   };
 
@@ -139,12 +142,10 @@
   var assign = function (instance, selectable) {
     instance.$combobox.addClass('selected');
     instance.$input.val(selectable.text());
+    instance.$input[0].setSelectionRange(0, 0);
     instance.$list.children().removeClass('actived').eq(selectable[0].index).addClass('actived');
     instance.selected = true;
     instance._value = selectable.val();
-    if (instance.options.clearable === true) {
-      instance.$close.insertBefore(instance.$list);
-    }
   }
 
   Combobox.prototype =  {
@@ -246,9 +247,18 @@
         .end()
         .css("top", "auto")
         .children()
+        .removeClass('selected')
         .addClass("es-visible")
         .show();
       combobox._show(lists);      
+    })
+    .on('hidden.editable-select', '[data-toggle="combobox-input"]', function (e) {
+      var combobox = $(this).data('editableSelect').combobox;
+      if (combobox.options.clearable === true && combobox.selected === true) {
+        combobox.$close.insertBefore(combobox.$list);
+      }
+      e.stopPropagation();
+      e.preventDefault();
     })
     .on('select.editable-select', '[data-toggle="combobox-input"]', function (e, $li) {
       if (e.namespace) {
@@ -275,11 +285,6 @@
           combobox.selected = false;
           combobox.$close.detach();
         } else {
-          
-          if (keycode === 8 || keycode === 46) {
-            combobox._setValue('');
-            if (combobox.clearable === true) combobox._change('');
-          }
           if (keycode !== 13) {
             combobox.$list
               .children()
@@ -289,6 +294,14 @@
           e.preventDefault();
           return false;
         }
+      }
+    })
+    .on('input', '[data-toggle="combobox-input"]', function (e) {
+      var $input = $(this);
+      var combobox = $input.data('editableSelect').combobox;
+      if (combobox.selected === false && $input.val().length === 0 && combobox._value) {
+        combobox._setValue(combobox._value);
+        combobox.$list.css("top", "auto");
       }
     })
     .on('keydown keyup input', '[data-toggle="combobox-input"]', function (e) {
