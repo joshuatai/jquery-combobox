@@ -40,9 +40,6 @@
   background-color: #eee;
   cursor: pointer;
 }
-.combobox .dropdown-menu > li.selected {
-  background: #f4f4f4;
-}
 .combobox .dropdown-menu > li.actived {
   background: #f4f4f4;
 }
