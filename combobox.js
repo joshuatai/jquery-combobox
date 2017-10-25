@@ -332,5 +332,8 @@
       var combobox = $(this).data('combobox');
       combobox._setValue('');
       combobox._change('');
-    });
+    })
+    .on('mouseleave', '.es-list', function (e) {
+      $(this).children().removeClass('selected');
+    })
 }));
